@@ -18,11 +18,11 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
         
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.7
+      #- name: Setup NuGet
+      #  uses: NuGet/setup-nuget@v1.0.7
         
-      - name: restore-nuget-packages
-        run: nuget restore testAction.sln
+      #- name: restore-nuget-packages
+      #  run: nuget restore testAction.sln
         
       - name: Build the solution
         run: msbuild testAction.sln
