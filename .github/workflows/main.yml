@@ -19,7 +19,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
         
       - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.7
+        run: nuget restore testAction.sln
         
       - name: restore-nuget-packages
-        uses: IT-Service/restore-nuget-packages@v1
+        run: msbuild testAction.sln
