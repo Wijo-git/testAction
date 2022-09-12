@@ -27,4 +27,4 @@ jobs:
       uses: cytopia/upload-artifact-verify-action@v0.1.4
       with:
         name: published_webapp
-        path: bin/Release/Publish
+        path: obj\Release\Package
