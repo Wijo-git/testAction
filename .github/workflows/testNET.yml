@@ -11,7 +11,7 @@ jobs:
       uses: Dana-Prajea/Setup-MSBuild@v1.1
       
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
+      uses: NuGet/setup-nuget@v1.0.7
     
     - name: Restore NuGet Packages
       run: nuget restore SimpleFrameworkApp.sln
