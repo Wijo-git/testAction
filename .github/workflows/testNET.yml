@@ -1,32 +1,26 @@
-name: build and test
-
-on:
-  push:
-  pull_request:
-    branches: [ main ]
-    paths:
-    - '**.cs'
-    - '**.csproj'
-
+name: Build Web App
+on: [push]
 jobs:
-  build-and-test:
-
-    name: build-and-test-${{matrix.os}}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest]
-
+  build:
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-
-    - name: Install dependencies
-      run: dotnet restore
+    - name: Checkout Code
+      uses: actions/checkout@v1
+          
+    - name: Setup MSBuild Path
+      uses: warrenbuckley/Setup-MSBuild@v1
       
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
     
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal
+    - name: Restore NuGet Packages
+      run: nuget restore SimpleFrameworkApp.sln
+
+    - name: Build and Publish Web App
+      run: msbuild testAction.sln /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: published_webapp
+        path: bin\Release\Publish
