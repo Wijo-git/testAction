@@ -27,4 +27,4 @@ jobs:
       uses: cytopia/upload-artifact-verify-action@v0.1.4
       with:
         name: published_webapp
-        path: D:\a\testAction\testAction\
+        path: D:\a\testAction\testAction\SimpleFrameworkApp\obj\Release\Package\PackageTmp
